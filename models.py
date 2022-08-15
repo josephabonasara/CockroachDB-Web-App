@@ -1,6 +1,12 @@
-class Score():
-    def __init__(self, id, avatar, playername, points):
-      self.id = id
-      self.avatar = avatar
-      self.playername = playername
-      self.points = points
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.sql.sqltypes import INT
+
+Base = declarative_base()
+
+class Score(Base):
+    __tablename__ = 'scores'
+    id = Column(UUID, primary_key=True)
+    playername = Column(String)
+    points = Column(INT)
